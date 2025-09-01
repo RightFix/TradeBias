@@ -27,18 +27,18 @@ for i in range(len(coins)):
     else:
         trade_condition = "No Trading"
     
-    data["Time"] = [Time.append(formatted_time)]
-    data["Crypto_Currency"] = [coin.append(coins[i])]
-    data["Bias_score"] = [bs.append(BC.bias_count(i))]
-    data["Trade_Condition"] = [tc.append(trade_condition)]
+    data["Time"] = Time.append(formatted_time)
+    data["Crypto_Currency"] = coin.append(coins[i])
+    data["Bias_score"] = bs.append(BC.bias_count(i))
+    data["Trade_Condition"] = tc.append(trade_condition)
     
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
     
     
     
-df = pd.DataFrame(data)
+#df = pd.DataFrame(data)
 
-df.to_csv('bias_record.csv', index=False)
+#df.to_csv('bias_record.csv', index=False)
 
 st.table(data)
 
