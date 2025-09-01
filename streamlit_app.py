@@ -32,9 +32,9 @@ for i in range(len(coins)):
 
     bias_score = BC.bias_count(i)
     if bias_score > 0:
-        trade_condition = "buy"
+        trade_condition = "Buy"
     elif bias_score < 0:
-        trade_condition = "sell"
+        trade_condition = "Sell"
     else:
         trade_condition = "No Trading"
 
