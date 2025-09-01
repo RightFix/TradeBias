@@ -5,7 +5,7 @@ from Bias import BiasClass
 from streamlit_autorefresh import st_autorefresh
 
 # Auto-refresh every 60 seconds
-st_autorefresh(interval=60000, key="refresh")
+st_autorefresh(interval=3600000, key="refresh")
 
 st.title("Trade Bias")
 
