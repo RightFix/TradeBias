@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 from Bias import BiasClass
 
-df = 
+
 
 st.title("Trade Bias")
 
@@ -11,7 +11,13 @@ coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSD
 BC = BiasClass(coins)
 
 for i in range(len(coins)):
-  st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
+    if BC.bias_count(i) > 0:
+        trade_condition = "buy"
+    elif BC.bias_count(i) < 0:
+        trade_condition = "sell"
+    else:
+        "No Trading"
+    st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
 
 time.sleep(20)
 st.rerun()
