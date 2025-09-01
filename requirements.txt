@@ -2,5 +2,4 @@ streamlit
 pybit
 pandas
 numpy
-PyDrive
 streamlit-autorefresh
