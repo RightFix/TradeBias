@@ -11,10 +11,14 @@ st.title("Trade Bias")
 coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "GNOUSDT"])
 BC = BiasClass(coins)
 
-data = {"Time":[],
-            "Crypto_Currency": [],
-            "Bias_score": [],
-            "Trade Condition": [],
+Time = []
+coin = []
+bs = []
+tc = []
+data = {"Time": Time,
+            "Crypto_Currency": coin,
+            "Bias_score": bs,
+            "Trade Condition": tc,
         }
 for i in range(len(coins)):
     if BC.bias_count(i) > 0:
@@ -24,6 +28,7 @@ for i in range(len(coins)):
     else:
         trade_condition = "No Trading"
     
+    data["Time"] = Time.append()
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
     
     
