@@ -31,6 +31,7 @@ for i in range(len(coins)):
     data["Crypto_Currency"] = coin.append(coins[i])
     data["Bias_score"] = bs.append(BC.bias_count(i))
     data["Trade_Condition"] = tc.append(trade_condition)
+    
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
     
     
