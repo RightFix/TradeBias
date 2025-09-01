@@ -33,8 +33,8 @@ for i in range(len(coins)):
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
  
 data = pd.DataFrame(data)   
-df  = pd.concat([df, data], ignore_index = True)
-    
+new  = pd.concat([df, data], ignore_index = True)
+new.to_csv("dataset/bias_record.csv", index= False)   
 st.table(df)
 
 time.sleep(60)
