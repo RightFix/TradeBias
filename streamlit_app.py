@@ -15,7 +15,7 @@ tc = []
 data = {"Time": Time,
             "Crypto_Currency": coin,
             "Bias_score": bs,
-            "Trade Condition": tc,
+            "Trade_Condition": tc,
         }
 for i in range(len(coins)):
     now = time.localtime()
@@ -27,7 +27,10 @@ for i in range(len(coins)):
     else:
         trade_condition = "No Trading"
     
-    data["Time"] = Time.append()
+    data["Time"] = Time.append(formatted_time)
+    data["Crypto_Currency"] = coin.append(coins[i])
+    data["Bias_score"] = bs.append(BC.bias_count(i))
+    data["Trade_Condition"] = tc.append(trade_condition)
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
     
     
