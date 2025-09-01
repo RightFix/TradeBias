@@ -10,3 +10,4 @@ BC = BiasClass(coins)
 for i in range(len(coins)):
   st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
 
+st.rerun()
