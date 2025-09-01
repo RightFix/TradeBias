@@ -4,55 +4,83 @@ import pandas as pd
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from Bias import BiasClass
+from streamlit_autorefresh import st_autorefresh
 
-# Authenticate
-gauth = GoogleAuth()
-gauth.LocalWebserverAuth()  # Opens browser for login
-drive = GoogleDrive(gauth)
-
+# Auto-refresh every 60 seconds
+st_autorefresh(interval=60000, key="refresh")
 
 st.title("Trade Bias")
 
+# Authenticate Google Drive only once
+@st.cache_resource
+def google_drive_auth():
+    gauth = GoogleAuth()
+    gauth.LoadCredentialsFile("credentials.json")
+    if gauth.credentials is None:
+        gauth.LocalWebserverAuth()
+        gauth.SaveCredentialsFile("credentials.json")
+    else:
+        gauth.Authorize()
+    return GoogleDrive(gauth)
+
+drive = google_drive_auth()
+
+# Coins and Bias class
 coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "GNOUSDT"])
 BC = BiasClass(coins)
 
-df = pd.read_csv("bias_record.csv")
-df = df.drop_duplicates()
-data = { "Time": [],
-    "Crypto_Currency" :[],
-    "Bias_score" :[],
-    "Trade_Condition" :[],
+# Load existing CSV from local or Google Drive
+file_name = "bias_record.csv"
+
+@st.cache_data
+def load_data():
+    try:
+        return pd.read_csv(file_name).drop_duplicates()
+    except FileNotFoundError:
+        return pd.DataFrame(columns=["Time", "Crypto_Currency", "Bias_score", "Trade_Condition"])
+
+df = load_data()
+
+# Prepare new data
+data = {
+    "Time": [],
+    "Crypto_Currency": [],
+    "Bias_score": [],
+    "Trade_Condition": [],
 }
 
 for i in range(len(coins)):
     now = time.localtime()
     formatted_time = time.strftime("%H:%M %d %m %Y", now)
-    if BC.bias_count(i) > 0:
+
+    bias_score = BC.bias_count(i)
+    if bias_score > 0:
         trade_condition = "buy"
-    elif BC.bias_count(i) < 0:
+    elif bias_score < 0:
         trade_condition = "sell"
     else:
         trade_condition = "No Trading"
-    
+
     data["Time"].append(formatted_time)
     data["Crypto_Currency"].append(coins[i])
-    data["Bias_score"].append(BC.bias_count(i))
+    data["Bias_score"].append(bias_score)
     data["Trade_Condition"].append(trade_condition)
 
-    st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
- 
-data = pd.DataFrame(data)   
-new  = pd.concat([df, data], ignore_index = True)
+    st.write(f"{coins[i]} bias score: {bias_score}")
 
-# Save to CSV locally
-file_name = "bias_record.csv"
-new.to_csv(file_name, index= False)   
-st.table(new)
+# Merge with old data
+data = pd.DataFrame(data)
+new_df = pd.concat([df, data], ignore_index=True).drop_duplicates()
 
-# Upload to Google Drive
-file = drive.CreateFile({'title': file_name})
+# Save locally
+new_df.to_csv(file_name, index=False)
+st.table(new_df)
+
+# Upload to Google Drive (update if exists)
+file_list = drive.ListFile({'q': f"title='{file_name}' and trashed=false"}).GetList()
+if file_list:
+    file = file_list[0]  # Use existing file
+else:
+    file = drive.CreateFile({'title': file_name})  # Create new file
 file.SetContentFile(file_name)
 file.Upload()
-
-time.sleep(60)
-st.rerun()
