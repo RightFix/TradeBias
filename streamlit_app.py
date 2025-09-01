@@ -19,10 +19,10 @@ for i in range(len(coins)):
     else:
         trade_condition = "No Trading"
     
-    data = {"Time":formatted_time,
-            "Crypto_Currency": coins[i],
-            "Bias_score": BC.bias_count(i),
-            "Trade Condition": trade_condition,
+    data = {"Time":[formatted_time],
+            "Crypto_Currency": [coins[i]],
+            "Bias_score": [BC.bias_count(i)],
+            "Trade Condition": [trade_condition],
         }
     
     df = pd.DataFrame(data)
