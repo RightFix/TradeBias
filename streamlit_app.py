@@ -8,14 +8,10 @@ st.title("Trade Bias")
 coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "GNOUSDT"])
 BC = BiasClass(coins)
 
-Time = []
-coin = []
-bs = []
-tc = []
-data = {"Time": Time,
-            "Crypto_Currency": coin,
-            "Bias_score": bs,
-            "Trade_Condition": tc,
+data = {"Time": [],
+            "Crypto_Currency": [],
+            "Bias_score": [],
+            "Trade_Condition": [],
         }
 for i in range(len(coins)):
     now = time.localtime()
