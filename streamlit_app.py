@@ -1,8 +1,6 @@
 import time
 import streamlit as st
 import pandas as pd
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 from Bias import BiasClass
 from streamlit_autorefresh import st_autorefresh
 
@@ -10,20 +8,6 @@ from streamlit_autorefresh import st_autorefresh
 st_autorefresh(interval=60000, key="refresh")
 
 st.title("Trade Bias")
-
-# Authenticate Google Drive only once
-@st.cache_resource
-def google_drive_auth():
-    gauth = GoogleAuth()
-    gauth.LoadCredentialsFile("credentials.json")
-    if gauth.credentials is None:
-        gauth.LocalWebserverAuth()
-        gauth.SaveCredentialsFile("credentials.json")
-    else:
-        gauth.Authorize()
-    return GoogleDrive(gauth)
-
-drive = google_drive_auth()
 
 # Coins and Bias class
 coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "GNOUSDT"])
@@ -75,12 +59,3 @@ new_df = pd.concat([df, data], ignore_index=True).drop_duplicates()
 # Save locally
 new_df.to_csv(file_name, index=False)
 st.table(new_df)
-
-# Upload to Google Drive (update if exists)
-file_list = drive.ListFile({'q': f"title='{file_name}' and trashed=false"}).GetList()
-if file_list:
-    file = file_list[0]  # Use existing file
-else:
-    file = drive.CreateFile({'title': file_name})  # Create new file
-file.SetContentFile(file_name)
-file.Upload()
