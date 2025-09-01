@@ -3,9 +3,6 @@ import streamlit as st
 import pandas as pd
 from Bias import BiasClass
 
-now = time.localtime()
-formatted_time = time.strftime("%H:%M %d %m %Y", now)
-
 st.title("Trade Bias")
 
 coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "GNOUSDT"])
@@ -21,6 +18,8 @@ data = {"Time": Time,
             "Trade Condition": tc,
         }
 for i in range(len(coins)):
+    now = time.localtime()
+    formatted_time = time.strftime("%H:%M %d %m %Y", now)
     if BC.bias_count(i) > 0:
         trade_condition = "buy"
     elif BC.bias_count(i) < 0:
