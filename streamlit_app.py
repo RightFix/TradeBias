@@ -34,7 +34,7 @@ for i in range(len(coins)):
  
 data = pd.DataFrame(data)   
 new  = pd.concat([df, data], ignore_index = True)
-new.to_csv("https://github.com/RightFix/TradeBias/blob/3a04cc5aea325da531cbcf8617e9e137a0d48577/dataset/bias_record.csv", index= False)   
+new.to_csv("dataset/bias_record.csv", index= False)   
 st.table(new)
 
 time.sleep(60)
