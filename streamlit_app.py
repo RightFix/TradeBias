@@ -34,7 +34,7 @@ for i in range(len(coins)):
     
 df = pd.DataFrame(data)
 
-df.to_csv('bias_record.csv', index=False)
+df.to_csv('dataset/bias_record.csv', index=False)
 
 st.table(data)
 
