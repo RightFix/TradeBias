@@ -14,17 +14,10 @@ coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSD
 BC = BiasClass(coins)
 
 # Load existing CSV from local or Google Drive
-file_name = "bias_record.csv"
+file_name = "dataset/bias_record.csv"
 
 @st.cache_data
-def load_data():
-    try:
-        return pd.read_csv(file_name).drop_duplicates()
-    except FileNotFoundError:
-        return pd.DataFrame(columns=["Time", "Crypto_Currency", "Bias_score", "Trade_Condition"])
-
-df = load_data()
-
+df = pd.read_csv(file_name).drop_duplicates()
 # Prepare new data
 data = {
     "Time": [],
