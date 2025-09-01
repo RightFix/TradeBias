@@ -25,6 +25,10 @@ for i in range(len(coins)):
             "Trade Condition": trade_condition,
         }
     
+    df = pd.DataFrame(data)
+
+    df.to_csv('datasets/bias_record.csv', index=False)
+    
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
 
 #time.sleep(20)
