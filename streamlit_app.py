@@ -16,8 +16,8 @@ BC = BiasClass(coins)
 # Load existing CSV from local or Google Drive
 file_name = "dataset/bias_record.csv"
 
-@st.cache_data
 df = pd.read_csv(file_name).drop_duplicates()
+
 # Prepare new data
 data = {
     "Time": [],
