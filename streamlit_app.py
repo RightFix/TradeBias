@@ -20,6 +20,7 @@ for i in range(len(coins)):
         trade_condition = "No Trading"
     
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
+    
     data = {"Time":[formatted_time],
             "Crypto_Currency": [coins[i]],
             "Bias_score": [BC.bias_count(i)],
