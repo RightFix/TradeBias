@@ -28,7 +28,7 @@ data = {
 
 for i in range(len(coins)):
     now = time.localtime()
-    formatted_time = time.strftime("%H:%M %d %m %Y", now)
+    formatted_time = time.strftime("%d/%m/%Y", now)
 
     bias_score = BC.bias_count(i)
     if bias_score > 0:
