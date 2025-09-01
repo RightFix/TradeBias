@@ -32,10 +32,9 @@ for i in range(len(coins)):
     
     
     
-df = pd.DataFrame(data)
 
-df.to_csv('dataset/bias_record.csv', index=False)
-
+data2 = pd.read_csv("dataset/bias_record.csv")
+st.table(data2)
 st.table(data)
 
 #time.sleep(20)
