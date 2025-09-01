@@ -3,7 +3,8 @@ import streamlit as st
 import pandas as pd
 from Bias import BiasClass
 
-
+now = time.localtime()
+formatted_time = time.strftime("%H:%M %d %m %Y", now)
 
 st.title("Trade Bias")
 
@@ -16,8 +17,15 @@ for i in range(len(coins)):
     elif BC.bias_count(i) < 0:
         trade_condition = "sell"
     else:
-        "No Trading"
+        trade_condition = "No Trading"
+    
+    data = {"Time":formatted_time,
+            "Crypto_Currency": coins[i],
+            "Bias_score": BC.bias_count(i),
+            "Trade Condition": trade_condition,
+        }
+    
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
 
-time.sleep(20)
-st.rerun()
+#time.sleep(20)
+#st.rerun()
