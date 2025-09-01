@@ -8,11 +8,7 @@ st.title("Trade Bias")
 coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "GNOUSDT"])
 BC = BiasClass(coins)
 
-data = {"Time": [],
-            "Crypto_Currency": [],
-            "Bias_score": [],
-            "Trade_Condition": [],
-        }
+data = pd.read_csv("dataset/bias_record.csv")
 for i in range(len(coins)):
     now = time.localtime()
     formatted_time = time.strftime("%H:%M %d %m %Y", now)
@@ -33,8 +29,6 @@ for i in range(len(coins)):
     
     
 
-data2 = pd.read_csv("dataset/bias_record.csv")
-st.table(data2)
 st.table(data)
 
 #time.sleep(20)
