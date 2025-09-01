@@ -1,7 +1,9 @@
 import time
 import streamlit as st
+import pandas as pd
 from Bias import BiasClass
 
+df = 
 
 st.title("Trade Bias")
 
