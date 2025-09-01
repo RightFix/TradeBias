@@ -29,7 +29,7 @@ for i in range(len(coins)):
     
 df = pd.DataFrame(data)
 
-df.to_csv('datasets/bias_record.csv', index=False)
+df.to_csv('dataset/bias_record.csv', index=False)
     
 
 #time.sleep(20)
