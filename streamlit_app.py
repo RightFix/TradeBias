@@ -15,10 +15,10 @@ st.title("Trade Bias")
 @st.cache_resource
 def google_drive_auth():
     gauth = GoogleAuth()
-    gauth.LoadCredentialsFile("credentials.json")
+    gauth.LoadCredentialsFile("client_secrets.json")
     if gauth.credentials is None:
         gauth.LocalWebserverAuth()
-        gauth.SaveCredentialsFile("credentials.json")
+        gauth.SaveCredentialsFile("client_secrets.json")
     else:
         gauth.Authorize()
     return GoogleDrive(gauth)
