@@ -37,5 +37,5 @@ df  = pd.concat([df, data], ignore_index = True)
     
 st.table(df)
 
-#time.sleep(20)
-#st.rerun()
+time.sleep(60)
+st.rerun()
