@@ -36,7 +36,7 @@ data = pd.DataFrame(data)
 df  = pd.concat([df, data], ignore_index = True)
     
 
-st.table(data)
+st.table(df)
 
 #time.sleep(20)
 #st.rerun()
