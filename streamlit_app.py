@@ -11,6 +11,11 @@ st.title("Trade Bias")
 coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "GNOUSDT"])
 BC = BiasClass(coins)
 
+data = {"Time":[],
+            "Crypto_Currency": [],
+            "Bias_score": [],
+            "Trade Condition": [],
+        }
 for i in range(len(coins)):
     if BC.bias_count(i) > 0:
         trade_condition = "buy"
@@ -21,11 +26,7 @@ for i in range(len(coins)):
     
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
     
-    data = {"Time":[formatted_time],
-            "Crypto_Currency": [coins[i]],
-            "Bias_score": [BC.bias_count(i)],
-            "Trade Condition": [trade_condition],
-        }
+    
     
 df = pd.DataFrame(data)
 
