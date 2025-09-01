@@ -1,3 +1,4 @@
+import tim3
 import streamlit as st
 from Bias import BiasClass
 
