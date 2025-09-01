@@ -9,6 +9,7 @@ coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSD
 BC = BiasClass(coins)
 
 df = pd.read_csv("dataset/bias_record.csv")
+df = df.drop_duplicated()
 data = { "Time": [],
     "Crypto_Currency" :[],
     "Bias_score" :[],
