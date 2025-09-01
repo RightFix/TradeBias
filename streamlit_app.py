@@ -31,7 +31,8 @@ for i in range(len(coins)):
     data["Trade_Condition"].append(trade_condition)
 
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
-    
+ 
+data = pd.DataFrame(data)   
 df  = pd.concat([df, data], ignore_index = True)
     
 
