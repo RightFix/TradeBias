@@ -2,3 +2,5 @@ streamlit
 pybit
 pandas
 numpy
+GoogleAuth
+GoogleDrive
