@@ -5,15 +5,11 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from Bias import BiasClass
 
-
-
 # Authenticate
 gauth = GoogleAuth()
 gauth.LocalWebserverAuth()  # Opens browser for login
 drive = GoogleDrive(gauth)
 
-# Save to CSV locally
-file_name = "data.csv"
 
 st.title("Trade Bias")
 
@@ -47,7 +43,10 @@ for i in range(len(coins)):
  
 data = pd.DataFrame(data)   
 new  = pd.concat([df, data], ignore_index = True)
-new.to_csv("dataset/bias_record.csv", index= False)   
+
+# Save to CSV locally
+file_name = "bias_record.csv"
+new.to_csv(file_name, index= False)   
 st.table(new)
 
 # Upload to Google Drive
