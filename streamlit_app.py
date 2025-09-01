@@ -52,6 +52,3 @@ new_df = pd.concat([df, data], ignore_index=True).drop_duplicates()
 # Save locally
 new_df.to_csv(file_name, index=False)
 st.table(new_df)
-
-with open("filename.txt", "w") as file:
-    file.write("Hello, World!")
