@@ -32,7 +32,7 @@ for i in range(len(coins)):
 
     st.write(f"{coins[i]} bias score: {BC.bias_count(i)}")
     
-df  = pd.concat(df, data)
+df  = pd.concat([df, data], ignore_index = True)
     
 
 st.table(data)
