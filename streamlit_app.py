@@ -16,7 +16,7 @@ st.title("Trade Bias")
 file_name = "dataset/bias_record.csv"
 df = pd.read_csv(file_name).drop_duplicates()
 
-if "13:20:10" in hour or "12:00:10" in hour:
+if "13:25:10" in hour or "12:00:10" in hour:
     
     # Prepare new data
     data = {
