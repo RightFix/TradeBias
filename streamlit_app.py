@@ -5,12 +5,12 @@ from Bias import BiasClass
 from streamlit_autorefresh import st_autorefresh
 
 # Auto-refresh every 60 seconds
-st_autorefresh(interval=3600000, key="refresh")
+st_autorefresh(interval=(3600000 * 12), key="refresh")
 
 st.title("Trade Bias")
 
 # Coins and Bias class
-coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "GNOUSDT"])
+coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "XRPUSDT", "LTCUSDT","XMRUSDT"])
 BC = BiasClass(coins)
 
 # Load existing CSV from local or Google Drive
