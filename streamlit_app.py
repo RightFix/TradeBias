@@ -5,7 +5,7 @@ from Bias import BiasClass
 from streamlit_autorefresh import st_autorefresh
 
 # Refresh every minute
-st_autorefresh(interval= 6000, key="refresh")
+st_autorefresh(interval= 60000, key="refresh")
 
 now = time.localtime()
 hour = time.strftime("%H:%M:%S", now)
@@ -16,7 +16,7 @@ st.title("Trade Bias")
 file_name = "dataset/bias_record.csv"
 df = pd.read_csv(file_name).drop_duplicates()
 
-if hour == "13:16:10" or hour == "12:00:10":
+if hour == "13:20:10" or hour == "12:00:10":
     
     # Prepare new data
     data = {
