@@ -41,8 +41,6 @@ for i in range(len(coins)):
     data["Bias_score"].append(bias_score)
     data["Trade_Condition"].append(trade_condition)
 
-    st.write(f"{coins[i]} bias score: {bias_score}")
-
 # Merge with old data
 data = pd.DataFrame(data)
 new_df = pd.concat([df, data], ignore_index=True).drop_duplicates()
