@@ -28,7 +28,7 @@ if hour == "00:00" or hour == "12:00":
 
     # Coins and Bias class
     coins = sorted(["ETHUSDT", "AAVEUSDT", "SOLUSDT", "COMPUSDT", "BNBUSDT", "BTCUSDT", "BCHUSDT", "XRPUSDT", "LTCUSDT","XMRUSDT"])
-    BC = BiasClass(coins)
+    BC = BiasClass(key,secret,coins)
     
     for i in range(len(coins)):
     
