@@ -18,6 +18,9 @@ df = pd.read_csv(file_name).drop_duplicates()
 
 if hour == "00:00" or hour == "12:00":
     
+    key = st.secrets["api"]["key"]
+    secret = st.secrets["api"]["secret"]
+    
     # Prepare new data
     data = {
         "Crypto_Currency": [],
