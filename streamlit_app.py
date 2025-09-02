@@ -2,10 +2,6 @@ import time
 import streamlit as st
 import pandas as pd
 from Bias import BiasClass
-from streamlit_autorefresh import st_autorefresh
-
-# Auto-refresh every 60 seconds
-st_autorefresh(interval= 43200000, key="refresh")
 
 st.title("Trade Bias")
 
@@ -20,10 +16,10 @@ df = pd.read_csv(file_name).drop_duplicates()
 
 # Prepare new data
 data = {
-    "Time":[],
     "Crypto_Currency": [],
     "Bias_score": [],
     "Trade_Condition": [],
+    "Time":[],
 }
 
 for i in range(len(coins)):
@@ -38,10 +34,10 @@ for i in range(len(coins)):
     else:
         trade_condition = "Wait"
         
-    data["Time"].append(formatted_time)
     data["Crypto_Currency"].append(coins[i])
     data["Bias_score"].append(bias_score)
     data["Trade_Condition"].append(trade_condition)
+    data["Time"].append(formatted_time)
 
 # Merge with old data
 data = pd.DataFrame(data)
@@ -50,3 +46,7 @@ new_df = pd.concat([df, data], ignore_index=True).drop_duplicates()
 # Save locally
 new_df.to_csv(file_name, index=False)
 st.table(new_df)
+
+# Reload after 12 hours
+time.sleep(12 * 60 * 60)
+st.rerun()
