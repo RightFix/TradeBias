@@ -5,7 +5,7 @@ from Bias import BiasClass
 from streamlit_autorefresh import st_autorefresh
 
 # Auto-refresh every 60 seconds
-st_autorefresh(interval=(3600000 * 12), key="refresh")
+st_autorefresh(interval= 43200000, key="refresh")
 
 st.title("Trade Bias")
 
@@ -20,6 +20,7 @@ df = pd.read_csv(file_name).drop_duplicates()
 
 # Prepare new data
 data = {
+    "Time":[],
     "Crypto_Currency": [],
     "Bias_score": [],
     "Trade_Condition": [],
@@ -27,7 +28,7 @@ data = {
 
 for i in range(len(coins)):
     now = time.localtime()
-    formatted_time = time.strftime("%d/%m/%Y", now)
+    formatted_time = time.strftime("%H:%M %d/%m/%Y", now)
 
     bias_score = BC.bias_count(i)
     if bias_score > 0:
@@ -36,7 +37,8 @@ for i in range(len(coins)):
         trade_condition = "Sell"
     else:
         trade_condition = "Wait"
-
+        
+    data["Time"].append(formatted_time)
     data["Crypto_Currency"].append(coins[i])
     data["Bias_score"].append(bias_score)
     data["Trade_Condition"].append(trade_condition)
