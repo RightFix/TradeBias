@@ -20,7 +20,6 @@ df = pd.read_csv(file_name).drop_duplicates()
 
 # Prepare new data
 data = {
-    "Time": [],
     "Crypto_Currency": [],
     "Bias_score": [],
     "Trade_Condition": [],
@@ -38,7 +37,6 @@ for i in range(len(coins)):
     else:
         trade_condition = "No Trading"
 
-    data["Time"].append(formatted_time)
     data["Crypto_Currency"].append(coins[i])
     data["Bias_score"].append(bias_score)
     data["Trade_Condition"].append(trade_condition)
