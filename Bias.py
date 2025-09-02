@@ -6,7 +6,7 @@ class BiasClass(HTTP):
     """
     This class is used to get the bias count and number of buy and sell candles
     """
-    def __init__(self, key,secret, *args, **kwargs):
+    def __init__(self, key,secret,*args, **kwargs):
         super().__init__()
         
         self.start_time = time.time() * 1000
