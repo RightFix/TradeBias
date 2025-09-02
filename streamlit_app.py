@@ -56,5 +56,6 @@ if hour == "00:00" or hour == "12:00":
 
 else:
     st.write("WAITING ...")
+    st.write("Trade bias is every 12 hours")
 
 st.table(df)
