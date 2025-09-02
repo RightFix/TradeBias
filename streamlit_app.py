@@ -35,7 +35,7 @@ for i in range(len(coins)):
     elif bias_score < 0:
         trade_condition = "Sell"
     else:
-        trade_condition = "Hold"
+        trade_condition = "Wait"
 
     data["Crypto_Currency"].append(coins[i])
     data["Bias_score"].append(bias_score)
