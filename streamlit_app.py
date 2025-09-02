@@ -8,7 +8,7 @@ from streamlit_autorefresh import st_autorefresh
 st_autorefresh(interval= 60000, key="refresh")
 
 now = time.localtime()
-hour = time.strftime("%H:%M:%S", now)
+hour = time.strftime("%H:%M", now)
 
 st.title("Trade Bias")
 
@@ -16,7 +16,7 @@ st.title("Trade Bias")
 file_name = "dataset/bias_record.csv"
 df = pd.read_csv(file_name).drop_duplicates()
 
-if "13:30:" in hour or "12:00:10" in hour:
+if hour == "00:00" or hour == "12:00":
     
     # Prepare new data
     data = {
