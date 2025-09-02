@@ -2,6 +2,10 @@ import time
 import streamlit as st
 import pandas as pd
 from Bias import BiasClass
+from streamlit_autorefresh import st_autorefresh
+
+# Refresh every  hour (300,000 ms)
+st_autorefresh(interval=3_600_000, key="refresh")
 
 st.title("Trade Bias")
 
