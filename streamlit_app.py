@@ -8,17 +8,15 @@ from streamlit_autorefresh import st_autorefresh
 st_autorefresh(interval=30000, key="refresh")
 
 now = time.localtime()
-hour = time.strftime("%H", now)
+hour = time.strftime("%H:%M", now)
 
 st.title("Trade Bias")
 
+# Load existing CSV from local
+file_name = "dataset/bias_record.csv"
+df = pd.read_csv(file_name).drop_duplicates()
 
-if hour == "0" or hour == "12":
-    
-    # Load existing CSV from local or Google Drive
-    file_name = "dataset/bias_record.csv"
-    
-    df = pd.read_csv(file_name).drop_duplicates()
+if hour == "00:00" or hour == "12":
     
     # Prepare new data
     data = {
