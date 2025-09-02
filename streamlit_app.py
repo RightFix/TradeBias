@@ -55,6 +55,6 @@ if hour == "13:10:00" or hour == "12:00:00":
     df.to_csv(file_name, index=False)
 
 else:
-    st.write("waiting...")
+    st.write("WAITING ...")
 
 st.table(df)
