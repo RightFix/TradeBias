@@ -4,8 +4,8 @@ import pandas as pd
 from Bias import BiasClass
 from streamlit_autorefresh import st_autorefresh
 
-# Refresh every minute
-st_autorefresh(interval= 60000, key="refresh")
+# Refresh every 30  seconrs
+st_autorefresh(interval= 30000, key="refresh")
 
 now = time.localtime()
 hour = time.strftime("%H:%M", now)
@@ -16,7 +16,7 @@ st.title(f"Trade Bias, {hour}")
 file_name = "dataset/bias_record.csv"
 df = pd.read_csv(file_name).drop_duplicates()
 
-if "00:03" in hour or  "12:00" in hour:
+if "00:06" in hour or  "12:00" in hour:
     
     key = st.secrets["key"]
     secret = st.secrets["secret"]
