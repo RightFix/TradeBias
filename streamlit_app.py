@@ -43,7 +43,7 @@ if hour == "07:00" or  hour == "19:00":
         elif bias_score < 0:
             trade_condition = "Strong sell" if bias_score < -100 else "Weak Sell"
         else:
-            trade_condition = "Wait"
+            trade_condition = "Not Available"
             
         data["Crypto_Currency"].append(coins[i])
         data["Bias_score"].append(bias_score)
