@@ -24,7 +24,7 @@ if hour == "07:00" or  hour == "19:00":
     # Prepare new data
     data = {
         "Crypto_Currency": [],
-        "Bias_score": [],
+        "Strength": [],
         "Trade_Condition": [],
         "Time":[],
     }
@@ -37,16 +37,16 @@ if hour == "07:00" or  hour == "19:00":
     
         formatted_time = time.strftime("%H:%M %d/%m/%Y", now)
     
-        bias_score = BC.bias_count(i)
-        if bias_score > 0:
-            trade_condition = "Strong Buy" if bias_score > 100 else "Weak Buy"
-        elif bias_score < 0:
-            trade_condition = "Strong sell" if bias_score < -100 else "Weak Sell"
+        Strength = BC.bias_count(i)
+        if Strength > 0:
+            trade_condition = "Strong Buy" if Strength > 100 else "Weak Buy"
+        elif Strength < 0:
+            trade_condition = "Strong sell" if Strength < -100 else "Weak Sell"
         else:
             trade_condition = "Not Available"
             
         data["Crypto_Currency"].append(coins[i])
-        data["Bias_score"].append(bias_score)
+        data["Strength"].append(Strength)
         data["Trade_Condition"].append(trade_condition)
         data["Time"].append(formatted_time)
 
