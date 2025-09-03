@@ -16,7 +16,7 @@ st.title("Trade Bias")
 file_name = "dataset/bias_record.csv"
 df = pd.read_csv(file_name).drop_duplicates()
 
-if "00:00" in hour or  "12:00" in hour:
+if "00:03" in hour or  "12:00" in hour:
     
     key = st.secrets["key"]
     secret = st.secrets["secret"]
