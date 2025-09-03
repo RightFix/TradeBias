@@ -16,7 +16,7 @@ st.title(f"Trade Bias, \n Time: {hour}")
 file_name = "dataset/bias_record.csv"
 df = pd.read_csv(file_name).drop_duplicates()
 
-if "00:00" in hour or  "12:00" in hour:
+if hour == "07:00" or  hour == "19:00":
     
     key = st.secrets["key"]
     secret = st.secrets["secret"]
@@ -59,6 +59,6 @@ if "00:00" in hour or  "12:00" in hour:
 
 else:
     st.write("WAITING ...")
-    st.write("Trade bias is every 12 hours which is in the  morning/mid-night and noon of the day ")
+    st.write("Trade bias is every 12 hours")
 
 st.table(df)
