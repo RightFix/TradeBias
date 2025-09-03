@@ -10,7 +10,7 @@ st_autorefresh(interval= 60000, key="refresh")
 now = time.localtime()
 hour = time.strftime("%H:%M", now)
 
-st.title("Trade Bias")
+st.title(f"Trade Bias, {hour}")
 
 # Load existing CSV from local
 file_name = "dataset/bias_record.csv"
