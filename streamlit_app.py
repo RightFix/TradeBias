@@ -52,7 +52,7 @@ if hour == "07:00" or  hour == "19:00":
 
     # Merge with old data
     data = pd.DataFrame(data)
-    df = pd.concat([df, data], ignore_index=True).drop_duplicates()
+    df = pd.concat([data, df], ignore_index=True).drop_duplicates()
     
     # Save locally
     df.to_csv(file_name, index=False)
