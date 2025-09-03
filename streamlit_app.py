@@ -39,9 +39,9 @@ if hour == "07:00" or  hour == "19:00":
     
         bias_score = BC.bias_count(i)
         if bias_score > 0:
-            trade_condition = "Buy"
+            trade_condition = "Strong Buy" if bias_score > 100 else "Weak Buy"
         elif bias_score < 0:
-            trade_condition = "Sell"
+            trade_condition = "Strong sell" if bias_score < -100 else "Weak Sell"
         else:
             trade_condition = "Wait"
             
