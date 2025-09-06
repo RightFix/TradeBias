@@ -16,7 +16,7 @@ st.title(f"Crypto Coin Strength Meter \n Time: {hour}")
 file_name = "dataset/bias_record.csv"
 df = pd.read_csv(file_name).drop_duplicates()
 
-if hour == "06:08":
+if st.button("Click"):
     
     key = st.secrets["key"]
     secret = st.secrets["secret"]
