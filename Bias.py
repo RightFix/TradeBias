@@ -9,7 +9,8 @@ class BiasClass(HTTP):
     def __init__(self, key,secret,*args, **kwargs):
         super().__init__()
         
-        self.start_time = time.time() * 1000
+        self.start_time = round(time.time() * 1000, -5)
+        self.second_time = round((time.time() * 1000) - (720 * 60 * 1000),-5)
         self.time_length = 720  # also run time of bot in minutes
         self.crypto = list(*args)
         
@@ -24,8 +25,13 @@ class BiasClass(HTTP):
         self.crypto_data = {self.crypto[y]: self.session.get_kline( category="linear", 
             symbol= self.crypto[y], 
             interval=1,
-            start = self.start_time, 
-            limit = self.time_length,).get("result").get("list") for y in range(len(self.crypto))}
+            end = self.start_time, 
+            limit = self.time_length,).get("result").get("list") + self.session.get_kline( category="linear", 
+            symbol= self.crypto[y], 
+            interval=1,
+            end = self.second_time, 
+            limit = self.time_length,).get("result").get("list")
+            for y in range(len(self.crypto))}
                 
     def bias_count(self, count):
         bias_score = 0
