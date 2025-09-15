@@ -9,8 +9,8 @@ class BiasClass(HTTP):
     def __init__(self, key,secret,*args, **kwargs):
         super().__init__()
         
-        self.start_time = round(time.time() * 1000, -5)
-        self.second_time = round((time.time() * 1000) - (720 * 60 * 1000),-5)
+        self.start_time = round(time.time() * 1000, -5) - (1440 * 60 * 1000),-5)
+        self.second_time = round((time.time() * 1000) - (2160 * 60 * 1000),-5)
         self.time_length = 720  # also run time of bot in minutes
         self.crypto = list(*args)
         
