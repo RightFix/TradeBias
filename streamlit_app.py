@@ -5,7 +5,7 @@ from Bias import BiasClass
 from streamlit_autorefresh import st_autorefresh
 
 # Refresh every minute
-st_autorefresh(interval= 60000, key="refresh")
+#st_autorefresh(interval= 60000, key="refresh")
 
 now = time.localtime()
 hour = time.strftime("%H:%M", now)
@@ -59,6 +59,6 @@ if st.button("Click"):
 
 else:
     st.write("WAITING ...")
-    st.write("Trade bias is every 12 hours")
+    st.write("Trade bias is every 24 hours")
 
 st.table(df)
